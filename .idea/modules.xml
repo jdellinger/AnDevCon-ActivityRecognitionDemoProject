@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ActivityRecognitionDemo/ActivityRecognitionDemo.iml" filepath="$PROJECT_DIR$/ActivityRecognitionDemo/ActivityRecognitionDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ActivityRecognitionDemoProject.iml" filepath="$PROJECT_DIR$/ActivityRecognitionDemoProject.iml" />
+    </modules>
+  </component>
+</project>
+
