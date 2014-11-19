@@ -7,19 +7,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -27,8 +21,6 @@ import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.location.ActivityRecognitionClient;
 import com.google.android.gms.location.ActivityRecognitionResult;
 import com.google.android.gms.location.DetectedActivity;
-import com.google.android.gms.location.Geofence;
-import com.google.android.gms.location.LocationClient;
 
 public class MainActivity extends Activity implements
         GooglePlayServicesClient.ConnectionCallbacks,
@@ -40,8 +32,7 @@ public class MainActivity extends Activity implements
     private ActivityRecognitionClient activityRecognitionClient;
     private PendingIntent pendingIntent;
 
-    private Handler handler = new Handler(Looper.getMainLooper());
-    private ActivityDetectedReceiver activityDetectedReceiver = new ActivityDetectedReceiver(handler);
+    private ActivityDetectedReceiver activityDetectedReceiver = new ActivityDetectedReceiver();
     private View container;
     private TextView textView;
 
@@ -122,12 +113,6 @@ public class MainActivity extends Activity implements
     }
 
     public class ActivityDetectedReceiver extends BroadcastReceiver {
-
-        private final Handler handler;
-
-        public ActivityDetectedReceiver(Handler handler){
-            this.handler = handler;
-        }
 
         @Override
         public void onReceive(Context context, Intent intent) {
