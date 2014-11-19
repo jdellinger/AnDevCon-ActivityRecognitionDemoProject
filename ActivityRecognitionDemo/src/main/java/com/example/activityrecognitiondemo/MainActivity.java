@@ -139,44 +139,38 @@ public class MainActivity extends Activity implements
                 final int activityType = mostProbableActivity.getType();
                 Log.d(TAG, "Activity type:"+activityType);
 
-//                handler.post(new Runnable() {
-//
-//                    @Override
-//                    public void run() {
-                        int color = Color.WHITE;
-                        String text = "";
-                        switch (activityType) {
-                            case DetectedActivity.STILL:
-                                color = Color.GREEN;
-                                text = "STILL";
-                                break;
-                            case DetectedActivity.WALKING:
-                            case DetectedActivity.RUNNING:
-                            case DetectedActivity.ON_FOOT:
-                                color = Color.RED;
-                                text = "ON_FOOT";
-                                break;
-                            case DetectedActivity.ON_BICYCLE:
-                                color = Color.BLUE;
-                                text = "ON_BICYCLE";
-                                break;
-                            case DetectedActivity.IN_VEHICLE:
-                                color = Color.YELLOW;
-                                text = "IN_VEHICLE";
-                                break;
-                            case DetectedActivity.TILTING:
-                                color = Color.CYAN;
-                                text = "TILTING";
-                                break;
-                            case DetectedActivity.UNKNOWN:
-                                color = Color.GRAY;
-                                text = "UNKNOWN";
-                                break;
-                        }
-                        container.setBackgroundColor(color);
-                        textView.setText(text);
-//                    }
-//                });
+                int color = Color.WHITE;
+                String text = "";
+                switch (activityType) {
+                    case DetectedActivity.STILL:
+                        color = Color.GREEN;
+                        text = "STILL";
+                        break;
+                    case DetectedActivity.WALKING:
+                    case DetectedActivity.RUNNING:
+                    case DetectedActivity.ON_FOOT:
+                        color = Color.RED;
+                        text = "ON_FOOT";
+                        break;
+                    case DetectedActivity.ON_BICYCLE:
+                        color = Color.BLUE;
+                        text = "ON_BICYCLE";
+                        break;
+                    case DetectedActivity.IN_VEHICLE:
+                        color = Color.YELLOW;
+                        text = "IN_VEHICLE";
+                        break;
+                    case DetectedActivity.TILTING:
+                        color = Color.CYAN;
+                        text = "TILTING";
+                        break;
+                    case DetectedActivity.UNKNOWN:
+                        color = Color.GRAY;
+                        text = "UNKNOWN";
+                        break;
+                }
+                container.setBackgroundColor(color);
+                textView.setText(text);
             }
         }
     }
