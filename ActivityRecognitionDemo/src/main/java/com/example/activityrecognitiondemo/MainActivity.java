@@ -108,7 +108,7 @@ public class MainActivity extends Activity implements
         Log.d(TAG, "Connected");
         Intent intent = new Intent(ACTIVITY_RECOGNITION_ACTION);
         pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        activityRecognitionClient.requestActivityUpdates(0, pendingIntent);
+        activityRecognitionClient.requestActivityUpdates(100, pendingIntent);
     }
 
     @Override
@@ -150,8 +150,10 @@ public class MainActivity extends Activity implements
                                 color = Color.GREEN;
                                 text = "STILL";
                                 break;
+                            case DetectedActivity.WALKING:
+                            case DetectedActivity.RUNNING:
                             case DetectedActivity.ON_FOOT:
-                                color = Color.YELLOW;
+                                color = Color.RED;
                                 text = "ON_FOOT";
                                 break;
                             case DetectedActivity.ON_BICYCLE:
@@ -159,7 +161,7 @@ public class MainActivity extends Activity implements
                                 text = "ON_BICYCLE";
                                 break;
                             case DetectedActivity.IN_VEHICLE:
-                                color = Color.RED;
+                                color = Color.YELLOW;
                                 text = "IN_VEHICLE";
                                 break;
                             case DetectedActivity.TILTING:
