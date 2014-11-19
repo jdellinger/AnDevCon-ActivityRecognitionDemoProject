@@ -139,10 +139,10 @@ public class MainActivity extends Activity implements
                 final int activityType = mostProbableActivity.getType();
                 Log.d(TAG, "Activity type:"+activityType);
 
-                handler.post(new Runnable() {
-
-                    @Override
-                    public void run() {
+//                handler.post(new Runnable() {
+//
+//                    @Override
+//                    public void run() {
                         int color = Color.WHITE;
                         String text = "";
                         switch (activityType) {
@@ -173,8 +173,8 @@ public class MainActivity extends Activity implements
                         }
                         container.setBackgroundColor(color);
                         textView.setText(text);
-                    }
-                });
+//                    }
+//                });
             }
         }
     }
