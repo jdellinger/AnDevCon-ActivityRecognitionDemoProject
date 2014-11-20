@@ -15,19 +15,19 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesClient;
-import com.google.android.gms.location.ActivityRecognitionClient;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.ActivityRecognition;
 import com.google.android.gms.location.ActivityRecognitionResult;
 import com.google.android.gms.location.DetectedActivity;
 
 public class MainActivity extends Activity implements
-        GooglePlayServicesClient.ConnectionCallbacks,
-        GooglePlayServicesClient.OnConnectionFailedListener {
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener {
 
     private static final String TAG = "ActivityRecognitionDemoTag";
     private static final String ACTIVITY_RECOGNITION_ACTION = "activityrecognitiondemo.ActivityDetected";
 
-    private ActivityRecognitionClient activityRecognitionClient;
+    private GoogleApiClient activityRecognitionClient;
     private PendingIntent pendingIntent;
 
     private ActivityDetectedReceiver activityDetectedReceiver = new ActivityDetectedReceiver();
@@ -41,7 +41,11 @@ public class MainActivity extends Activity implements
         container = findViewById(R.id.container);
         textView = (TextView) findViewById(R.id.display);
 
-        activityRecognitionClient = new ActivityRecognitionClient(this, this, this);
+        activityRecognitionClient = new GoogleApiClient.Builder(this)
+                .addApi(ActivityRecognition.API)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .build();
     }
 
     @Override
@@ -53,7 +57,7 @@ public class MainActivity extends Activity implements
     @Override
     protected void onStop() {
         if(activityRecognitionClient.isConnected()){
-            activityRecognitionClient.removeActivityUpdates(pendingIntent);
+            ActivityRecognition.ActivityRecognitionApi.removeActivityUpdates(activityRecognitionClient, pendingIntent);
         }
         activityRecognitionClient.disconnect();
         super.onStop();
@@ -97,11 +101,11 @@ public class MainActivity extends Activity implements
         Log.d(TAG, "Connected");
         Intent intent = new Intent(ACTIVITY_RECOGNITION_ACTION);
         pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        activityRecognitionClient.requestActivityUpdates(100, pendingIntent);
+        ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates(activityRecognitionClient, 100, pendingIntent);
     }
 
     @Override
-    public void onDisconnected() {
+    public void onConnectionSuspended(int i) {
 
     }
 
