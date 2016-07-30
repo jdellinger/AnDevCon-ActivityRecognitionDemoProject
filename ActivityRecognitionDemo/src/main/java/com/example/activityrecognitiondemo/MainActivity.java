@@ -101,7 +101,7 @@ public class MainActivity extends Activity implements
         Log.d(TAG, "Connected");
         Intent intent = new Intent(ACTIVITY_RECOGNITION_ACTION);
         pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates(activityRecognitionClient, 100, pendingIntent);
+        ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates(activityRecognitionClient, 0, pendingIntent);
     }
 
     @Override
