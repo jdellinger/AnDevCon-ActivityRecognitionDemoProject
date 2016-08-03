@@ -24,7 +24,7 @@ public class MainActivity extends Activity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
-    private static final String TAG = "ActivityRecognitionDemoTag";
+    private static final String TAG = "ActivityRecognitionDemo";
     private static final String ACTIVITY_RECOGNITION_ACTION = "activityrecognitiondemo.ActivityDetected";
 
     private GoogleApiClient activityRecognitionClient;
